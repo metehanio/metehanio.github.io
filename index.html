@@ -8,11 +8,14 @@
 
     <style>
         :root {
-            --molten-lava: #780000;
-            --brick-red: #c1121f;
-            --papaya-whip: #fdf0d5;
-            --deep-space-blue: #003049;
-            --steel-blue: #669bbc;
+            /* Anki Renk Paleti */
+            --anki-primary: #418dd5;
+            --anki-primary-dark: #2d78c8;
+            --anki-sky: #7ebbe5;
+            --anki-bg-dark: #07090e;
+            --anki-bg-navy: #0f223d;
+            --anki-foreground: #ffffff;
+            --anki-subtle: #968ca8;
         }
 
         * {
@@ -39,21 +42,21 @@
             background:
                 radial-gradient(
                     circle at 20% 20%,
-                    rgba(193, 18, 31, 0.75),
+                    rgba(65, 141, 213, 0.55),
                     transparent 40%
                 ),
                 radial-gradient(
                     circle at 80% 80%,
-                    rgba(102, 155, 188, 0.65),
+                    rgba(126, 187, 229, 0.45),
                     transparent 45%
                 ),
                 linear-gradient(
                     135deg,
-                    var(--deep-space-blue),
-                    var(--molten-lava)
+                    var(--anki-bg-dark),
+                    var(--anki-bg-navy)
                 );
 
-            color: var(--papaya-whip);
+            color: var(--anki-foreground);
             overflow: hidden;
         }
 
@@ -75,21 +78,27 @@
             letter-spacing: -0.065em;
             line-height: 0.9;
 
-            color: var(--papaya-whip);
+            color: var(--anki-foreground);
 
             text-shadow:
-                0 10px 40px rgba(0, 0, 0, 0.25);
+                0 10px 40px rgba(0, 0, 0, 0.45);
 
             user-select: none;
         }
 
-        /* LinkedIn */
-
-        .linkedin {
+        /* Sağ Üst Butonlar */
+        .social-links {
             position: fixed;
             top: 28px;
             right: 30px;
 
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .social-link {
             width: 46px;
             height: 46px;
 
@@ -97,13 +106,13 @@
             align-items: center;
             justify-content: center;
 
-            color: var(--papaya-whip);
+            color: var(--anki-foreground);
             text-decoration: none;
 
-            border: 1px solid rgba(253, 240, 213, 0.25);
+            border: 1px solid rgba(126, 187, 229, 0.25);
             border-radius: 14px;
 
-            background: rgba(0, 48, 73, 0.25);
+            background: rgba(15, 34, 61, 0.45);
 
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -115,7 +124,7 @@
                 box-shadow 0.3s ease;
         }
 
-        .linkedin svg {
+        .social-link svg {
             width: 22px;
             height: 22px;
 
@@ -124,23 +133,22 @@
                 color 0.3s ease;
         }
 
-        .linkedin:hover {
+        .social-link:hover {
             transform: translateY(-4px) scale(1.08);
 
-            background: var(--brick-red);
-            border-color: rgba(253, 240, 213, 0.55);
+            background: linear-gradient(135deg, var(--anki-primary-dark), var(--anki-primary));
+            border-color: rgba(126, 187, 229, 0.65);
 
             box-shadow:
-                0 12px 35px rgba(193, 18, 31, 0.4);
+                0 12px 35px rgba(65, 141, 213, 0.45);
         }
 
-        .linkedin:hover svg {
+        .social-link:hover svg {
             transform: scale(1.08);
-            color: white;
+            color: #ffffff;
         }
 
         /* Dekoratif ışıklar */
-
         .glow {
             position: fixed;
             width: 500px;
@@ -149,29 +157,40 @@
             border-radius: 50%;
 
             filter: blur(100px);
-            opacity: 0.25;
+            opacity: 0.28;
 
             pointer-events: none;
         }
 
         .glow.one {
-            background: var(--brick-red);
+            background: var(--anki-primary);
             top: -250px;
             left: -200px;
         }
 
         .glow.two {
-            background: var(--steel-blue);
+            background: var(--anki-sky);
             bottom: -250px;
             right: -200px;
         }
 
         /* Mobil */
-
         @media (max-width: 600px) {
-            .linkedin {
+            .social-links {
                 top: 20px;
                 right: 20px;
+                gap: 8px;
+            }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
+                border-radius: 12px;
+            }
+
+            .social-link svg {
+                width: 20px;
+                height: 20px;
             }
 
             .content {
@@ -190,22 +209,58 @@
     <div class="glow one"></div>
     <div class="glow two"></div>
 
-    <a
-        class="linkedin"
-        href="https://www.linkedin.com/in/metehanduman/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="LinkedIn"
-    >
-        <!-- LinkedIn SVG -->
-        <svg
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
+    <nav class="social-links" aria-label="Sosyal Medya Bağlantıları">
+        <a
+            class="social-link soundcloud"
+            href="https://soundcloud.com/metehanio"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="SoundCloud"
         >
-            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM3.56 9h3.56v11.45H3.56V9z"/>
-        </svg>
-    </a>
+            <!-- SoundCloud SVG -->
+            <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path d="M23.999 14.165c-.052 1.796-1.612 3.169-3.4 3.169h-8.18a.68.68 0 0 1-.675-.683V7.862a.747.747 0 0 1 .452-.724s.75-.513 2.333-.513a5.364 5.364 0 0 1 2.763.755 5.433 5.433 0 0 1 2.57 3.54c.282-.08.574-.121.868-.12.884 0 1.73.358 2.347.992s.948 1.49.922 2.373ZM10.721 8.421c.247 2.98.427 5.697 0 8.672a.264.264 0 0 1-.53 0c-.395-2.946-.22-5.718 0-8.672a.264.264 0 0 1 .53 0ZM9.072 9.448c.285 2.659.37 4.986-.006 7.655a.277.277 0 0 1-.55 0c-.331-2.63-.256-5.02 0-7.655a.277.277 0 0 1 .556 0Zm-1.663-.257c.27 2.726.39 5.171 0 7.904a.266.266 0 0 1-.532 0c-.38-2.69-.257-5.21 0-7.904a.266.266 0 0 1 .532 0Zm-1.647.77a26.108 26.108 0 0 1-.008 7.147.272.272 0 0 1-.542 0 27.955 27.955 0 0 1 0-7.147.275.275 0 0 1 .55 0Zm-1.67 1.769c.421 1.865.228 3.5-.029 5.388a.257.257 0 0 1-.514 0c-.21-1.858-.398-3.549 0-5.389a.272.272 0 0 1 .543 0Zm-1.655-.273c.388 1.897.26 3.508-.01 5.412-.026.28-.514.283-.54 0-.244-1.878-.347-3.54-.01-5.412a.283.283 0 0 1 .56 0Zm-1.668.911c.4 1.268.257 2.292-.026 3.572a.257.257 0 0 1-.514 0c-.241-1.262-.354-2.312-.023-3.572a.283.283 0 0 1 .563 0Z"/>
+            </svg>
+        </a>
+
+        <a
+            class="social-link github"
+            href="https://github.com/metehanio"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+        >
+            <!-- GitHub SVG -->
+            <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+        </a>
+
+        <a
+            class="social-link linkedin"
+            href="https://www.linkedin.com/in/metehanduman/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+        >
+            <!-- LinkedIn SVG -->
+            <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM3.56 9h3.56v11.45H3.56V9z"/>
+            </svg>
+        </a>
+    </nav>
 
     <main class="content">
         <h1>Metehan</h1>
