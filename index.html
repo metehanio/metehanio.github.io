@@ -69,46 +69,36 @@
             opacity: 1;
         }
 
-        /* Sol Üst Marka Logosu */
+        /* Sol Üst Marka Logosu (Butonsuz, Saf Tipografi & Tıklanabilir Ses Kontrolü) */
         .brand-logo {
             position: fixed;
             top: 28px;
             left: 30px;
             z-index: 10;
 
-            display: inline-flex;
-            align-items: center;
-            height: 46px;
-            padding: 0 20px;
-
             color: var(--anki-foreground);
             text-decoration: none;
-            font-size: 1.45rem;
+            font-size: 2.5rem;
             font-weight: 600;
-            letter-spacing: -0.04em;
+            letter-spacing: -0.05em;
             line-height: 1;
+            cursor: pointer;
 
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 14px;
-            background: rgba(0, 0, 0, 0.38);
+            text-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.8),
+                0 1px 4px rgba(0, 0, 0, 0.6);
 
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             user-select: none;
-            transition:
-                transform 0.3s ease,
-                background 0.3s ease,
-                border-color 0.3s ease,
-                box-shadow 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.2s ease;
         }
 
         .brand-logo:hover {
-            transform: translateY(-4px) scale(1.04);
-            background: linear-gradient(135deg, var(--anki-primary-dark), var(--anki-primary));
-            border-color: rgba(126, 187, 229, 0.65);
-            box-shadow: 0 12px 35px rgba(65, 141, 213, 0.5);
+            opacity: 0.8;
+            transform: scale(1.02);
+        }
+
+        .brand-logo:active {
+            transform: scale(0.98);
         }
 
         /* Sağ Üst Butonlar */
@@ -177,6 +167,81 @@
             color: #ffffff;
         }
 
+        /* Merkez Başlık (Birbirine Dönüşen Kelimeler - Morphing Stage) */
+        .hero-center {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+
+            text-align: center;
+            pointer-events: none;
+            user-select: none;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .morph-stage {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: clamp(5rem, 14vw, 11rem);
+        }
+
+        .morph-word {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            white-space: nowrap;
+
+            font-size: clamp(4.5rem, 13vw, 10rem);
+            font-weight: 600;
+            letter-spacing: -0.055em;
+            line-height: 1;
+            color: #ffffff;
+
+            text-shadow:
+                0 15px 50px rgba(0, 0, 0, 0.8),
+                0 4px 15px rgba(0, 0, 0, 0.6);
+
+            opacity: 0;
+            filter: blur(26px);
+
+            transition:
+                opacity 2.4s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 2.6s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 2.4s cubic-bezier(0.22, 1, 0.36, 1),
+                letter-spacing 2.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+            will-change: opacity, transform, filter, letter-spacing;
+        }
+
+        /* Aktif kelime (Net, odakta) */
+        .morph-word.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            filter: blur(0);
+            letter-spacing: -0.055em;
+        }
+
+        /* Gelen kelime (Sisten yoğunlaşarak belirecek) */
+        .morph-word.incoming {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.92);
+            filter: blur(26px);
+            letter-spacing: 0.04em;
+        }
+
+        /* Eriyen kelime (Büyüyüp sise dönüşerek erir) */
+        .morph-word.outgoing {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(1.1);
+            filter: blur(30px);
+            letter-spacing: 0.06em;
+        }
+
         /* Sağ Alt Alan (Ses Butonu ve Konum) */
         .bottom-right-container {
             position: fixed;
@@ -207,10 +272,7 @@
             .brand-logo {
                 top: 20px;
                 left: 20px;
-                height: 40px;
-                padding: 0 14px;
-                font-size: 1.15rem;
-                border-radius: 12px;
+                font-size: 1.85rem;
             }
 
             .social-links {
@@ -228,6 +290,19 @@
             .social-link svg {
                 width: 20px;
                 height: 20px;
+            }
+
+            .morph-stage {
+                height: 22vw;
+            }
+
+            .morph-word {
+                font-size: 19vw;
+                letter-spacing: -0.04em;
+            }
+
+            .morph-word.active {
+                letter-spacing: -0.04em;
             }
 
             .bottom-right-container {
@@ -254,8 +329,8 @@
     <!-- Arkaplan Müziği -->
     <audio id="bgMusic" src="assets/bg-music.mp3" loop preload="auto"></audio>
 
-    <!-- Sol Üst Marka Logosu -->
-    <a href="#" class="brand-logo" aria-label="Metehan">
+    <!-- Sol Üst Marka Logosu (Tıklanabilir Müzik Tetikleyici) -->
+    <a href="#" class="brand-logo" aria-label="Metehan - Müziği Başlat / Durdur" title="Müziği Başlat / Durdur">
         Metehan
     </a>
 
@@ -313,6 +388,14 @@
         </a>
     </nav>
 
+    <!-- Merkez Karşılama Başlığı (Birbirine Dönüşen Kelimeler) -->
+    <main class="hero-center" aria-live="polite">
+        <div class="morph-stage">
+            <h1 id="wordA" class="morph-word active">Dream</h1>
+            <h1 id="wordB" class="morph-word incoming"></h1>
+        </div>
+    </main>
+
     <!-- Sağ Alt Alan (Ses Butonu ve Konum) -->
     <div class="bottom-right-container">
         <!-- Ses Aç/Kapa Butonu -->
@@ -339,7 +422,7 @@
         </div>
     </div>
 
-    <!-- Video ve Ses Kontrol Scripti -->
+    <!-- Video, Ses ve Metin Kontrol Scripti -->
     <script>
         (function() {
             // Responsive Video Seçimi (Mobil cihazlar için optimize edilmiş hafif asset'ler)
@@ -427,11 +510,51 @@
                 });
             }
 
+            // Merkez Kelime Dönüşümü (Morphing Effect: Boşluk Olmadan Birbirine Evrilme)
+            const rotatingWords = ["Dream", "Innovation", "Future"];
+            let currentWordIdx = 0;
+            let activeEl = document.getElementById('wordA');
+            let incomingEl = document.getElementById('wordB');
+            let isMorphing = false;
+
+            function morphToNextWord() {
+                if (isMorphing) return;
+                isMorphing = true;
+
+                currentWordIdx = (currentWordIdx + 1) % rotatingWords.length;
+                const nextWord = rotatingWords[currentWordIdx];
+
+                // Gelen elemente yeni kelimeyi ata ve başlangıç durumunu ver
+                incomingEl.textContent = nextWord;
+                incomingEl.className = 'morph-word incoming';
+
+                // Eşzamanlı dönüşüm: Biri sise erirken diğeri o sisin içinden yoğunlaşarak doğar
+                requestAnimationFrame(() => {
+                    activeEl.className = 'morph-word outgoing';
+                    incomingEl.className = 'morph-word active';
+
+                    setTimeout(() => {
+                        activeEl.className = 'morph-word incoming';
+                        activeEl.textContent = '';
+
+                        const temp = activeEl;
+                        activeEl = incomingEl;
+                        incomingEl = temp;
+
+                        isMorphing = false;
+                    }, 2500); // 2.5s ultra-ağır geçiş süresiyle senkron
+                });
+            }
+
+            // Her 6.7 saniyede bir dönüşüm (~4.2s net okuma + 2.5s ağır eriyerek dönüşme)
+            setInterval(morphToNextWord, 6700);
+
             // Arkaplan Müziği Yönetimi
             const bgMusic = document.getElementById('bgMusic');
             const soundToggle = document.getElementById('soundToggle');
             const soundMutedIcon = document.getElementById('soundMutedIcon');
             const soundActiveIcon = document.getElementById('soundActiveIcon');
+            const brandLogo = document.querySelector('.brand-logo');
             let isAudioPlaying = false;
 
             bgMusic.volume = 0.4; // İdeal arka plan ses seviyesi
@@ -453,16 +576,30 @@
                 soundToggle.setAttribute('aria-label', 'Müziği Başlat');
             }
 
-            soundToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
+            function toggleAudio() {
                 if (isAudioPlaying) {
                     pauseAudio();
                 } else {
                     playAudio();
                 }
+            }
+
+            // Sağ alttaki ses butonu tıklaması
+            soundToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleAudio();
             });
 
-            // Tarayıcı autoplay politikası gereği ilk kullanıcı etkileşiminde başlat
+            // Sol üstteki Metehan yazısına tıklanıldığında müziği aç/kapat
+            if (brandLogo) {
+                brandLogo.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleAudio();
+                });
+            }
+
+            // Tarayıcı autoplay politikası gereği sayfaya ilk tıklamada müziği başlat
             window.addEventListener('click', () => {
                 if (!isAudioPlaying) {
                     playAudio();
