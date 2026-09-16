@@ -12,8 +12,7 @@
             --anki-primary: #418dd5;
             --anki-primary-dark: #2d78c8;
             --anki-sky: #7ebbe5;
-            --anki-bg-dark: #07090e;
-            --anki-bg-navy: #0f223d;
+            --anki-bg-dark: #000000;
             --anki-foreground: #ffffff;
             --anki-subtle: #968ca8;
         }
@@ -26,9 +25,9 @@
 
         body {
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-color: var(--anki-bg-dark);
+            color: var(--anki-foreground);
+            overflow: hidden;
 
             font-family:
                 -apple-system,
@@ -38,52 +37,78 @@
                 "Helvetica Neue",
                 Arial,
                 sans-serif;
+        }
 
-            background:
-                radial-gradient(
-                    circle at 20% 20%,
-                    rgba(65, 141, 213, 0.55),
-                    transparent 40%
-                ),
-                radial-gradient(
-                    circle at 80% 80%,
-                    rgba(126, 187, 229, 0.45),
-                    transparent 45%
-                ),
-                linear-gradient(
-                    135deg,
-                    var(--anki-bg-dark),
-                    var(--anki-bg-navy)
-                );
-
-            color: var(--anki-foreground);
+        /* Sıralı Video Arkaplanı (Filtresiz, Orijinal Tonlar) */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             overflow: hidden;
+            z-index: 0;
         }
 
-        /* Hafif cam efekti */
-        .content {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-
-            padding: 40px 60px;
-
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+        .bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+            pointer-events: none;
         }
 
-        h1 {
-            font-size: clamp(4rem, 12vw, 10rem);
-            font-weight: 600;
-            letter-spacing: -0.065em;
-            line-height: 0.9;
+        .bg-video.active {
+            opacity: 1;
+        }
+
+        /* Sol Üst Marka Logosu */
+        .brand-logo {
+            position: fixed;
+            top: 28px;
+            left: 30px;
+            z-index: 10;
+
+            display: inline-flex;
+            align-items: center;
+            height: 46px;
+            padding: 0 20px;
 
             color: var(--anki-foreground);
+            text-decoration: none;
+            font-size: 1.45rem;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            line-height: 1;
 
-            text-shadow:
-                0 10px 40px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.38);
 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             user-select: none;
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .brand-logo:hover {
+            transform: translateY(-4px) scale(1.04);
+            background: linear-gradient(135deg, var(--anki-primary-dark), var(--anki-primary));
+            border-color: rgba(126, 187, 229, 0.65);
+            box-shadow: 0 12px 35px rgba(65, 141, 213, 0.5);
         }
 
         /* Sağ Üst Butonlar */
@@ -109,13 +134,15 @@
             color: var(--anki-foreground);
             text-decoration: none;
 
-            border: 1px solid rgba(126, 187, 229, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 14px;
 
-            background: rgba(15, 34, 61, 0.45);
+            background: rgba(0, 0, 0, 0.38);
 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 
             transition:
                 transform 0.3s ease,
@@ -139,8 +166,7 @@
             background: linear-gradient(135deg, var(--anki-primary-dark), var(--anki-primary));
             border-color: rgba(126, 187, 229, 0.65);
 
-            box-shadow:
-                0 12px 35px rgba(65, 141, 213, 0.45);
+            box-shadow: 0 12px 35px rgba(65, 141, 213, 0.5);
         }
 
         .social-link:hover svg {
@@ -148,34 +174,35 @@
             color: #ffffff;
         }
 
-        /* Dekoratif ışıklar */
-        .glow {
+        /* Sağ Alt Konum Bilgisi */
+        .location-tag {
             position: fixed;
-            width: 500px;
-            height: 500px;
+            bottom: 28px;
+            right: 30px;
+            z-index: 10;
 
-            border-radius: 50%;
+            font-style: italic;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            color: rgba(255, 255, 255, 0.82);
 
-            filter: blur(100px);
-            opacity: 0.28;
-
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+            user-select: none;
             pointer-events: none;
-        }
-
-        .glow.one {
-            background: var(--anki-primary);
-            top: -250px;
-            left: -200px;
-        }
-
-        .glow.two {
-            background: var(--anki-sky);
-            bottom: -250px;
-            right: -200px;
         }
 
         /* Mobil */
         @media (max-width: 600px) {
+            .brand-logo {
+                top: 20px;
+                left: 20px;
+                height: 40px;
+                padding: 0 14px;
+                font-size: 1.15rem;
+                border-radius: 12px;
+            }
+
             .social-links {
                 top: 20px;
                 right: 20px;
@@ -193,12 +220,10 @@
                 height: 20px;
             }
 
-            .content {
-                padding: 30px;
-            }
-
-            h1 {
-                font-size: 22vw;
+            .location-tag {
+                bottom: 20px;
+                right: 20px;
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -206,9 +231,18 @@
 
 <body>
 
-    <div class="glow one"></div>
-    <div class="glow two"></div>
+    <!-- Arkaplan Video Oynatıcısı (Orijinal Renkler) -->
+    <div class="video-container" aria-hidden="true">
+        <video id="videoA" class="bg-video active" muted playsinline preload="auto"></video>
+        <video id="videoB" class="bg-video" muted playsinline preload="auto"></video>
+    </div>
 
+    <!-- Sol Üst Marka Logosu -->
+    <a href="#" class="brand-logo" aria-label="Metehan">
+        Metehan
+    </a>
+
+    <!-- Sağ Üst Butonlar -->
     <nav class="social-links" aria-label="Sosyal Medya Bağlantıları">
         <a
             class="social-link soundcloud"
@@ -262,9 +296,113 @@
         </a>
     </nav>
 
-    <main class="content">
-        <h1>Metehan</h1>
-    </main>
+    <!-- Sağ Alt Konum Bilgisi -->
+    <div class="location-tag">
+        İstanbul / Türkiye
+    </div>
+
+    <!-- Video Sıralayıcı Script -->
+    <script>
+        (function() {
+            const playlist = [
+                'assets/video-1.mp4',
+                'assets/video-2.mp4',
+                'assets/video-3.mp4',
+                'assets/video-4.mp4',
+                'assets/video-5.mp4'
+            ];
+
+            let currentIndex = 0;
+            const videoA = document.getElementById('videoA');
+            const videoB = document.getElementById('videoB');
+            let activeVideo = videoA;
+            let nextVideo = videoB;
+            let isTransitioning = false;
+
+            function init() {
+                videoA.src = playlist[0];
+                videoA.load();
+                const playPromise = videoA.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {});
+                }
+
+                // Bir sonraki videoyu ikinci video elementine önceden yükle
+                const nextIdx = (currentIndex + 1) % playlist.length;
+                videoB.src = playlist[nextIdx];
+                videoB.load();
+
+                setupListeners(videoA);
+                setupListeners(videoB);
+            }
+
+            function switchVideo() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+
+                currentIndex = (currentIndex + 1) % playlist.length;
+
+                nextVideo.play().then(() => {
+                    nextVideo.classList.add('active');
+                    activeVideo.classList.remove('active');
+
+                    setTimeout(() => {
+                        activeVideo.pause();
+
+                        // Video rollerini değiştir
+                        const temp = activeVideo;
+                        activeVideo = nextVideo;
+                        nextVideo = temp;
+
+                        // Sıradaki sonraki videoyu arka planda hazırla
+                        const upcomingIdx = (currentIndex + 1) % playlist.length;
+                        nextVideo.src = playlist[upcomingIdx];
+                        nextVideo.load();
+
+                        isTransitioning = false;
+                    }, 1200); // CSS 1.2s crossfade süresi
+                }).catch(() => {
+                    isTransitioning = false;
+                });
+            }
+
+            function setupListeners(video) {
+                video.addEventListener('timeupdate', () => {
+                    if (video === activeVideo && !isTransitioning) {
+                        // Video bitimine 1.5 saniye kala crossfade başlat
+                        if (video.duration && (video.duration - video.currentTime <= 1.5)) {
+                            switchVideo();
+                        }
+                    }
+                });
+
+                video.addEventListener('ended', () => {
+                    if (video === activeVideo && !isTransitioning) {
+                        switchVideo();
+                    }
+                });
+
+                video.addEventListener('error', () => {
+                    if (video === activeVideo && !isTransitioning) {
+                        switchVideo();
+                    }
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+            // İlk kullanıcı etkileşimi olursa video oynatmayı garantiye al
+            window.addEventListener('click', () => {
+                if (activeVideo && activeVideo.paused) {
+                    activeVideo.play().catch(() => {});
+                }
+            }, { once: true });
+        })();
+    </script>
 
 </body>
 </html>
