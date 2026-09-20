@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metehan Duman - Özgeçmiş (CV)</title>
+    
+    <style>
+        :root {
+            --primary: #1e3a8a;          /* Kurumsal lacivert */
+            --primary-dark: #0f172a;     /* Koyu arduvaz */
+            --primary-light: #3b82f6;    /* Vurgu mavisi */
+            --accent: #059669;           /* Zümrüt yeşili */
+            --accent-soft: #ecfdf5;
+            --accent-border: #a7f3d0;
+            --text-main: #0f172a;        /* Çok koyu metin */
+            --text-muted: #334155;       /* İkincil metin */
+            --text-light: #64748b;       /* Açık metin */
+            --bg-page: #f8fafc;          /* Sayfa arkaplanı */
+            --bg-card: #ffffff;          /* Kart arkaplanı */
+            --border: #e2e8f0;           /* Kenarlık rengi */
+            --border-subtle: #f1f5f9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-page);
+            line-height: 1.5;
+            font-size: 9.5pt;
+            min-height: 100vh;
+        }
+
+        /* Ekran Üst Araç Çubuğu (Baskıda Gizlenir) */
+        .top-action-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: #ffffff;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .top-action-bar .brand-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .top-action-bar .brand-back:hover {
+            color: #7ebbe5;
+            transform: translateX(-2px);
+        }
+
+        .top-action-bar .actions-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-print {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2563eb;
+            color: #ffffff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+            transition: background 0.2s ease, transform 0.15s ease;
+        }
+
+        .btn-print:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .btn-print:active {
+            transform: translateY(1px);
+        }
+
+        /* CV Ana Döküman Konteynırı (A4 Oranında) */
+        .cv-wrapper {
+            max-width: 210mm;
+            margin: 28px auto 40px auto;
+            background: var(--bg-card);
+            box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08);
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        /* ÜST HEADER (BAŞLIK & İLETİŞİM) */
+        .cv-header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #1e3a8a 100%);
+            color: #ffffff;
+            padding: 34px 40px 28px 40px;
+            position: relative;
+            border-bottom: 3px solid #2563eb;
+        }
+
+        .cv-name {
+            font-size: 26pt;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 6px;
+            color: #ffffff;
+        }
+
+        .cv-title {
+            font-size: 11.5pt;
+            font-weight: 600;
+            color: #93c5fd;
+            letter-spacing: 0.02em;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .cv-title span.sep {
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px 18px;
+            font-size: 8.5pt;
+            color: #f1f5f9;
+            margin-top: 4px;
+        }
+
+        .contact-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #f1f5f9;
+            text-decoration: none;
+        }
+
+        .contact-item svg {
+            width: 15px;
+            height: 15px;
+            fill: #60a5fa;
+            flex-shrink: 0;
+        }
+
+        /* İKİ KOLONLU GÖVDE MİMARİSİ */
+        .cv-body {
+            display: grid;
+            grid-template-columns: 66mm 1fr;
+            background: #ffffff;
+        }
+
+        /* SOL YAN KOLON */
+        .cv-sidebar {
+            background-color: #f8fafc;
+            border-right: 1px solid var(--border);
+            padding: 24px 20px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* SAĞ ANA KOLON */
+        .cv-main {
+            padding: 24px 28px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* BÖLÜM STİLLERİ */
+        .section-block {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .section-heading {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+
+        .section-heading svg {
+            width: 16px;
+            height: 16px;
+            fill: #2563eb;
+            flex-shrink: 0;
+        }
+
+        /* KİŞİSEL BİLGİ LİSTESİ */
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 8.5pt;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 3px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .info-val {
+            color: var(--text-main);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* YETKİNLİK ETİKETLERİ */
+        .skill-group {
+            margin-bottom: 8px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .skill-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-group-title {
+            font-size: 8pt;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 5px;
+        }
+
+        .skill-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .badge {
+            font-size: 7.8pt;
+            padding: 2.5px 7.5px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .badge.highlight {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            color: #1e40af;
+            font-weight: 600;
+        }
+
+        /* PROFESYONEL ÖZET KUTUSU */
+        .profile-summary {
+            background: #f8fafc;
+            border-left: 3.5px solid #2563eb;
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            font-size: 8.8pt;
+            color: #1e293b;
+            line-height: 1.5;
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* DENEYİM & EĞİTİM KARTLARI */
+        .timeline-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .timeline-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .item-title {
+            font-size: 9.8pt;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .item-date {
+            font-size: 7.8pt;
+            font-weight: 600;
+            color: #1d4ed8;
+            background: #eff6ff;
+            padding: 1.5px 7px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .item-subtitle {
+            font-size: 8.6pt;
+            font-weight: 600;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .item-desc {
+            font-size: 8.4pt;
+            color: var(--text-muted);
+            line-height: 1.45;
+            margin-top: 2px;
+        }
+
+        .item-desc ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .item-desc li {
+            position: relative;
+            padding-left: 14px;
+            margin-bottom: 3px;
+        }
+
+        .item-desc li::before {
+            content: "▪";
+            position: absolute;
+            left: 2px;
+            color: #2563eb;
+            font-size: 9pt;
+        }
+
+        /* SERTİFİKA VE LİSANSLAR IZGARASI */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+        }
+
+        .cert-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 7px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .cert-box.featured {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+        }
+
+        .cert-name {
+            font-weight: 700;
+            font-size: 8.2pt;
+            color: var(--text-main);
+            line-height: 1.25;
+        }
+
+        .cert-org {
+            font-size: 7.6pt;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cert-time {
+            font-size: 7.2pt;
+            color: var(--text-light);
+        }
+
+        /* LİDERLİK & ETKİNLİKLER */
+        .activity-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .activity-title {
+            font-weight: 700;
+            font-size: 8.6pt;
+            color: var(--text-main);
+        }
+
+        .activity-desc {
+            font-size: 8.1pt;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* HOBİ VE İLGİ ALANLARI */
+        .hobby-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .hobby-pill {
+            font-size: 7.8pt;
+            padding: 3px 8px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* YAZDIRMA (CTRL + P / @media print) ÖZEL STİLLERİ */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 8mm 10mm;
+            }
+
+            html, body {
+                background: #ffffff !important;
+                color: #0f172a !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                font-size: 8.8pt !important;
+                line-height: 1.4 !important;
+            }
+
+            .cv-wrapper {
+                max-width: 100% !important;
+                width: 100% !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+            }
+
+            .cv-header {
+                padding: 20px 24px 18px 24px !important;
+                border-bottom: 2.5px solid #2563eb !important;
+            }
+
+            .cv-name {
+                font-size: 22pt !important;
+            }
+
+            .cv-title {
+                font-size: 10.5pt !important;
+                margin-bottom: 12px !important;
+            }
+
+            .cv-body {
+                grid-template-columns: 62mm 1fr !important;
+            }
+
+            .cv-sidebar {
+                padding: 16px 14px 16px 16px !important;
+                background-color: #f8fafc !important;
+            }
+
+            .cv-main {
+                padding: 16px 18px 16px 16px !important;
+            }
+
+            .section-block {
+                gap: 6px !important;
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            .section-heading {
+                font-size: 9.8pt !important;
+                padding-bottom: 3px !important;
+                margin-bottom: 3px !important;
+            }
+
+            .timeline-item, .cert-box, .activity-card {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            a {
+                text-decoration: none !important;
+                color: inherit !important;
+            }
+        }
+
+        /* MOBİL VE KÜÇÜK EKRANLAR (Responsive) */
+        @media screen and (max-width: 768px) {
+            .cv-wrapper {
+                margin: 12px 10px 30px 10px;
+                border-radius: 8px;
+            }
+
+            .cv-header {
+                padding: 24px 20px;
+            }
+
+            .cv-name {
+                font-size: 20pt;
+            }
+
+            .cv-title {
+                font-size: 10pt;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .cv-body {
+                grid-template-columns: 1fr;
+            }
+
+            .cv-sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 20px;
+            }
+
+            .cv-main {
+                padding: 20px;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ÜST ARAÇ ÇUBUĞU (Sadece Ekranda Görünür, Baskıda Gizlenir) -->
+    <aside class="top-action-bar no-print" aria-label="Sayfa İşlemleri">
+        <a href="index.html" class="brand-back" title="Ana Sayfaya Geri Dön">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>metehanio.github.io</span>
+        </a>
+
+        <div class="actions-group">
+            <button class="btn-print" onclick="window.print();" type="button" title="Yazdır veya PDF Olarak Kaydet">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                <span>Yazdır / PDF İndir (CTRL + P)</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- CV DÖKÜMANI -->
+    <main class="cv-wrapper">
+
+        <!-- HEADER BANNER -->
+        <header class="cv-header">
+            <h1 class="cv-name">Metehan Duman</h1>
+            <div class="cv-title">
+                <span>Orman Mühendisi</span>
+                <span class="sep">•</span>
+                <span>İHA-1 Ticari Pilotu</span>
+                <span class="sep">•</span>
+                <span>CBS &amp; Bilişim</span>
+            </div>
+
+            <!-- İletişim Bilgileri -->
+            <div class="contact-grid">
+                <a href="tel:+905063057343" class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.59 3.68a1 1 0 01-.24 1.02l-2.23 2.09z"/></svg>
+                    <span>+90 (506) 305 73 43</span>
+                </a>
+                <a href="mailto:metehandmn@outlook.com" class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <span>metehandmn@outlook.com</span>
+                </a>
+                <span class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+                    <span>İstanbul, Türkiye</span>
+                </span>
+                <a href="https://www.linkedin.com/in/metehanduman/" target="_blank" rel="noopener noreferrer" class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.25c-.9 0-1.63.73-1.63 1.63 0 .9.73 1.63 1.63 1.63.9 0 1.63-.73 1.63-1.63 0-.9-.73-1.63-1.63-1.63z"/></svg>
+                    <span>linkedin.com/in/metehanduman</span>
+                </a>
+                <a href="https://github.com/metehanio" target="_blank" rel="noopener noreferrer" class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                    <span>github.com/metehanio</span>
+                </a>
+                <a href="https://metehanio.github.io" target="_blank" rel="noopener noreferrer" class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    <span>metehanio.github.io</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- İKİ KOLONLU GÖVDE -->
+        <div class="cv-body">
+
+            <!-- SOL YAN KOLON -->
+            <aside class="cv-sidebar">
+
+                <!-- Kişisel Bilgiler -->
+                <section class="section-block">
+                    <h2 class="section-heading">
+                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        <span>Kişisel Bilgiler</span>
+                    </h2>
+                    <div class="info-list">
+                        <div class="info-row">
+                            <span class="info-label">Doğum Tarihi:</span>
+                            <span class="info-val">04.04.1998</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Askerlik Durumu:</span>
+                            <span class="info-val" style="color: #059669;">Tecilli (Temmuz 2026)</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Sürücü Belgesi:</span>
+                            <span class="info-val">B Sınıfı</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Uyruk:</span>
+                            <span class="info-val">T.C.</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Yetkinlikler -->
+                <section class="section-block">
+                    <h2 class="section-heading">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                        <span>Yetkinlikler</span>
+                    </h2>
+
+                    <div class="skill-group">
+                        <div class="skill-group-title">Mühendislik &amp; CBS</div>
+                        <div class="skill-badges">
+                            <span class="badge highlight">CBS / Haritacılık</span>
+                            <span class="badge highlight">İHA-1 Ticari Pilot</span>
+                            <span class="badge highlight">AutoCAD (2D)</span>
+                            <span class="badge">Orman Amenajmanı</span>
+                            <span class="badge">Silvikültür</span>
+                            <span class="badge">Saha Envanteri</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-group-title">Bilişim &amp; Sistem</div>
+                        <div class="skill-badges">
+                            <span class="badge highlight">Linux (CLI &amp; SysAdmin)</span>
+                            <span class="badge">DevOps Temelleri</span>
+                            <span class="badge">Kotlin / Android</span>
+                            <span class="badge">Siber Güvenlik</span>
+                            <span class="badge">Ağ Temelleri</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <div class="skill-group-title">Veri &amp; Ofis Araçları</div>
+                        <div class="skill-badges">
+                            <span class="badge highlight">MS Excel (İleri Düzey)</span>
+                            <span class="badge">Google E-Tablolar</span>
+                            <span class="badge">MS Word &amp; PPT</span>
+                            <span class="badge">LibreOffice</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Diller -->
+                <section class="section-block">
+                    <h2 class="section-heading">
+                        <svg viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+                        <span>Yabancı Diller</span>
+                    </h2>
+                    <div class="info-list">
+                        <div class="info-row">
+                            <span class="info-label">Türkçe:</span>
+                            <span class="info-val">Anadil</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">İngilizce:</span>
+                            <span class="info-val">B1/B2 (Mesleki &amp; Teknik)</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- İlgi Alanları -->
+                <section class="section-block">
+                    <h2 class="section-heading">
+                        <svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                        <span>İlgi Alanları</span>
+                    </h2>
+                    <div class="hobby-tags">
+                        <span class="hobby-pill">🎵 Müzik Prodüksiyonu</span>
+                        <span class="hobby-pill">✈️ Havacılık &amp; İHA</span>
+                        <span class="hobby-pill">💻 Yazılım &amp; Açık Kaynak</span>
+                        <span class="hobby-pill">📷 Fotoğrafçılık</span>
+                        <span class="hobby-pill">🚲 Bisiklet Sporu</span>
+                        <span class="hobby-pill">⚽ Futbol</span>
+                    </div>
+                </section>
+
+                <!-- Referanslar -->
+                <section class="section-block">
+                    <h2 class="section-heading">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                        <span>Referanslar</span>
+                    </h2>
+                    <p style="font-size: 8pt; color: var(--text-muted); line-height: 1.4;">
+                        Akademik ve kurumsal referanslar talep doğrultusunda memnuniyetle iletilecektir.
+                    </p>
+                </section>
+
+            </aside>
+
+            <!-- SAĞ ANA KOLON -->
+            <main class="cv-main">
+
+                <!-- PROFESYONEL ÖZET -->
+                <section class="section-block">
+                    <h2 class="section-heading">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                        <span>Profesyonel Profil</span>
+                    </h2>
+                    <div class="profile-summary">
+                        İstanbul Üniversitesi-Cerrahpaşa Orman Mühendisliği mezunuyum. Orman mühendisliğinin saha ve amenajman disiplinini; <strong>Coğrafi Bilgi Sistemleri (CBS)</strong>, <strong>İHA-1 Ticari Pilotluğu</strong>, <strong>AutoCAD</strong> ve <strong>Linux / Bilişim Teknolojileri</strong> yetkinlikleriyle harmanlayarak modern mühendislik çözümleri üretmeye odaklanıyorum. Fakülte döneminde CBS-T Kulüp Başkanlığı ve bilimsel don toleransı araştırma projesinde aktif rol aldım. Analitik düşünme, veri odaklı karar verme ve saha-teknoloji entegrasyonuna yönelik güçlü motivasyona sahibim.
+                    </div>
+                </section>
+
+                <!-- DENEYİM & STAJ -->
+                <section class="section-block">
+                    <h2 class="section-heading">
+                        <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.1 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                        <span>İş &amp; Staj Deneyimleri</span>
+                    </h2>
+                    <div class="timeline-list">
+                        
+                        <div class="timeline-item">
+                            <div class="item-header">
+                                <span class="item-title">Stajyer Orman Mühendisi (Staj II)</span>
+                                <span class="item-date">Temmuz 2022 – Ağustos 2022</span>
+                            </div>
+                            <div class="item-subtitle">
+                                <span>Orman Genel Müdürlüğü (OGM)</span>
+                                <span>•</span>
+                                <span style="color: var(--text-light); font-weight: 500;">Sarıyer Orman İşletme Şefliği, İstanbul</span>
+                            </div>
+                            <div class="item-desc">
+                                <ul>
+                                    <li>Orman işletme şefliği bünyesinde silvikültürel bakım müdahaleleri, damgalama ve üretim süreçlerini sahada inceleme.</li>
+                                    <li>Yangın gözetleme kuleleri organizasyonu, ilk müdahale ekipleri koordinasyonu ve orman koruma faaliyetlerinin takibi.</li>
+                                    <li>Fidanlık yönetimi, tohum ekimi ve orman kadastro/saha denetim süreçlerine aktif katılım.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="item-header">
+                                <span class="item-title">Stajyer Orman Mühendisi (Staj I)</span>
+                                <span class="item-date">Temmuz 2021 – Ağustos 2021</span>
+                            </div>
+                            <div class="item-subtitle">
+                                <span>Orman Genel Müdürlüğü (OGM)</span>
+                                <span>•</span>
+                                <span style="color: var(--text-light); font-weight: 500;">Kayseri Orman Bölge Müdürlüğü</span>
+                            </div>
+                            <div class="item-desc">
+                                <ul>
+                                    <li>Orman amenajman planlarının araziye uygulanması ve saha envanter verilerinin toplanması çalışmalarında görev alma.</li>
+                                    <li>Ağaçlandırma sahalarının incelenmesi, erozyon kontrol yöntemleri ve toprak muhafaza projelerinin analizi.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- EĞİTİM -->
+                <section class="section-block">
+                    <h2 class="section-heading">
+                        <svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+                        <span>Eğitim Bilgileri</span>
+                    </h2>
+                    <div class="timeline-list">
+
+                        <div class="timeline-item">
+                            <div class="item-header">
+                                <span class="item-title">İstanbul Üniversitesi-Cerrahpaşa</span>
+                                <span class="item-date">Eylül 2018 – Temmuz 2024</span>
+                            </div>
+                            <div class="item-subtitle">
+                                <span>Orman Fakültesi, Orman Mühendisliği Bölümü</span>
+                                <span>•</span>
+                                <span style="color: #2563eb; font-weight: 600;">Lisans (GNO: 2.56 / 4.00)</span>
+                            </div>
+                            <div class="item-desc">
+                                Orman amenajmanı, haritacılık/CBS, havza yönetimi, orman botaniği, orman koruma ve silvikültür alanlarında teorik ve arazi uygulamalı mühendislik eğitimi.
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="item-header">
+                                <span class="item-title">Nuh Mehmet Baldöktü Anadolu Lisesi</span>
+                                <span class="item-date">2014 – 2017</span>
+                            </div>
+                            <div class="item-subtitle">
+                                <span>Kayseri</span>
+                                <span>•</span>
+                                <span style="color: var(--text-light); font-weight: 500;">Mezuniyet Notu: 80.79 / 100</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="item-header">
+                                <span class="item-title">F. Bayır Fen Lisesi &amp; TED Konya Ereğli Koleji</span>
+                                <span class="item-date">2010 – 2014</span>
+                            </div>
+                            <div class="item-desc">
+                                SBS derecesiyle Fen Lisesi kazanımı; TED Koleji Mehmet Sert Bursluluk Sınavı derecesi ile tam burslu ortaöğretim eğitimi.
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- BİLİMSEL PROJE VE LİDERLİK -->
+                <section class="section-block">
+                    <h2 class="section-heading">
+                        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        <span>Projeler &amp; Liderlik</span>
+                    </h2>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+
+                        <div class="activity-card">
+                            <div class="item-header">
+                                <span class="activity-title">Kulüp Başkanı | CBS &amp; Teknoloji Kulübü (CBS-T)</span>
+                                <span class="item-date">2021 – 2022</span>
+                            </div>
+                            <div class="activity-desc">
+                                İstanbul Üniversitesi-Cerrahpaşa bünyesinde Coğrafi Bilgi Sistemleri (CBS), uzaktan algılama ve harita teknolojilerine yönelik çalıştaylar, teknik eğitimler ve sektör panellerinin koordinasyonunu yürüttüm.
+                            </div>
+                        </div>
+
+                        <div class="activity-card">
+                            <div class="item-header">
+                                <span class="activity-title">Akademik Araştırma Projesi | Çankırı Karatekin Üniversitesi</span>
+                                <span class="item-date">2021 – 2022</span>
+                            </div>
+                            <div class="activity-desc">
+                                <em>"Yerli ve Yabancı Göknar, Sedir ve Ladin Taksonlarında Mevsimsel Olarak Don'a Dayanıklılığın Belirlenmesi"</em> projesinde fizyolojik/morfolojik adaptasyon mekanizmalarının tespiti, saha numune alımı ve veri analizi süreçlerinde görev aldım.
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- SERTİFİKALAR VE LİSANSLAR -->
+                <section class="section-block">
+                    <h2 class="section-heading">
+                        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                        <span>Lisanslar &amp; Sertifikalar</span>
+                    </h2>
+                    <div class="cert-grid">
+                        
+                        <div class="cert-box featured">
+                            <span class="cert-name">İHA - 1 Ticari Pilot Lisansı</span>
+                            <span class="cert-org">SHGM (Sivil Havacılık Genel Müd.)</span>
+                            <span class="cert-time">Ekim 2022</span>
+                        </div>
+
+                        <div class="cert-box featured">
+                            <span class="cert-name">AutoCAD ile 2D Tasarımlar</span>
+                            <span class="cert-org">BTK Akademi</span>
+                            <span class="cert-time">Ağustos 2023</span>
+                        </div>
+
+                        <div class="cert-box featured">
+                            <span class="cert-name">NDG Linux Unhatched English</span>
+                            <span class="cert-org">Cisco Networking Academy</span>
+                            <span class="cert-time">Kasım 2022</span>
+                        </div>
+
+                        <div class="cert-box">
+                            <span class="cert-name">DevOps - Linux Temelleri</span>
+                            <span class="cert-org">Udemy</span>
+                            <span class="cert-time">Eylül 2023</span>
+                        </div>
+
+                        <div class="cert-box">
+                            <span class="cert-name">Linux A-Z™ | Sıfırdan Linux</span>
+                            <span class="cert-org">Udemy</span>
+                            <span class="cert-time">Ekim 2023</span>
+                        </div>
+
+                        <div class="cert-box">
+                            <span class="cert-name">Temel Linux (101-401 Serisi)</span>
+                            <span class="cert-org">Turkcell Geleceği Yazanlar</span>
+                            <span class="cert-time">2023</span>
+                        </div>
+
+                        <div class="cert-box">
+                            <span class="cert-name">Siber Güvenliğe Giriş</span>
+                            <span class="cert-org">BTK Akademi</span>
+                            <span class="cert-time">Haziran 2024</span>
+                        </div>
+
+                        <div class="cert-box">
+                            <span class="cert-name">Yazılıma Başlangıç Patikası</span>
+                            <span class="cert-org">Patika.dev / BUÜ</span>
+                            <span class="cert-time">Eylül 2022</span>
+                        </div>
+
+                        <div class="cert-box">
+                            <span class="cert-name">MS Excel: Formüller &amp; Özellikler</span>
+                            <span class="cert-org">Udemy &amp; LinkedIn (Office 365)</span>
+                            <span class="cert-time">2022 – 2023</span>
+                        </div>
+
+                        <div class="cert-box">
+                            <span class="cert-name">A-Z™ Google E-Tablolar</span>
+                            <span class="cert-org">Udemy</span>
+                            <span class="cert-time">Eylül 2023</span>
+                        </div>
+
+                        <div class="cert-box">
+                            <span class="cert-name">Model Uçak Sertifikası</span>
+                            <span class="cert-org">Türk Hava Kurumu (THK)</span>
+                            <span class="cert-time">Haziran 2020</span>
+                        </div>
+
+                        <div class="cert-box">
+                            <span class="cert-name">Diksiyon Eğitimi</span>
+                            <span class="cert-org">Millî Eğitim Bakanlığı</span>
+                            <span class="cert-time">Şubat 2017</span>
+                        </div>
+
+                    </div>
+                </section>
+
+            </main>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
