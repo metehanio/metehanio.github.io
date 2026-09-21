@@ -443,7 +443,7 @@
     </div>
 
     <!-- Arkaplan Müziği -->
-    <audio id="bgMusic" src="assets/bg-music.mp3" loop preload="none"></audio>
+    <audio id="bgMusic" src="assets/bg-music.mp3" loop preload="auto" autoplay></audio>
 
     <!-- Sol Üst Marka Logosu (Tıklanabilir Müzik Tetikleyici) -->
     <a href="#" class="brand-logo" aria-label="Metehan - Müziği Başlat / Durdur" title="Müziği Başlat / Durdur">
@@ -718,30 +718,48 @@
             const soundActiveIcon = document.getElementById('soundActiveIcon');
             const brandLogo = document.querySelector('.brand-logo');
             let isAudioPlaying = false;
+            let userExplicitlyPaused = false;
 
             bgMusic.volume = 0.4; // İdeal arka plan ses seviyesi
 
-            function playAudio() {
-                bgMusic.play().then(() => {
-                    isAudioPlaying = true;
+            function updateAudioUI(playing) {
+                isAudioPlaying = playing;
+                if (playing) {
                     soundMutedIcon.style.display = 'none';
                     soundActiveIcon.style.display = 'block';
                     soundToggle.setAttribute('aria-label', 'Müziği Durdur');
-                }).catch(() => {});
+                } else {
+                    soundMutedIcon.style.display = 'block';
+                    soundActiveIcon.style.display = 'none';
+                    soundToggle.setAttribute('aria-label', 'Müziği Başlat');
+                }
+            }
+
+            bgMusic.addEventListener('play', () => updateAudioUI(true));
+            bgMusic.addEventListener('pause', () => updateAudioUI(false));
+
+            function playAudio() {
+                const playPromise = bgMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        updateAudioUI(true);
+                    }).catch(() => {
+                        // Tarayıcı otomatik çalma engeline takılırsa sessizce etkileşim beklenir
+                    });
+                }
             }
 
             function pauseAudio() {
+                userExplicitlyPaused = true;
                 bgMusic.pause();
-                isAudioPlaying = false;
-                soundMutedIcon.style.display = 'block';
-                soundActiveIcon.style.display = 'none';
-                soundToggle.setAttribute('aria-label', 'Müziği Başlat');
+                updateAudioUI(false);
             }
 
             function toggleAudio() {
                 if (isAudioPlaying) {
                     pauseAudio();
                 } else {
+                    userExplicitlyPaused = false;
                     playAudio();
                 }
             }
@@ -761,15 +779,36 @@
                 });
             }
 
-            // Tarayıcı autoplay politikası gereği sayfaya ilk tıklamada müziği başlat
-            window.addEventListener('click', () => {
-                if (!isAudioPlaying) {
+            // Sayfa açılır açılmaz çalmayı dene
+            playAudio();
+
+            // Sayfa ve kaynaklar tamamen hazır olduğunda da tekrar dene
+            window.addEventListener('load', () => {
+                if (!isAudioPlaying && !userExplicitlyPaused) {
+                    playAudio();
+                }
+            });
+
+            // Tarayıcı güvenlik politikası (Autoplay Policy) nedeniyle doğrudan başlamazsa;
+            // kullanıcının sayfadaki ilk herhangi bir hareketinde (dokunma, tıklama, kaydırma, tuşa basma) hemen başlat
+            const interactionEvents = ['pointerdown', 'touchstart', 'click', 'keydown', 'scroll', 'wheel'];
+            function onFirstUserInteraction() {
+                if (!isAudioPlaying && !userExplicitlyPaused) {
                     playAudio();
                 }
                 if (activeVideo && activeVideo.paused) {
                     activeVideo.play().catch(() => {});
                 }
-            }, { once: true });
+                interactionEvents.forEach(evt => {
+                    window.removeEventListener(evt, onFirstUserInteraction);
+                    document.removeEventListener(evt, onFirstUserInteraction);
+                });
+            }
+
+            interactionEvents.forEach(evt => {
+                window.addEventListener(evt, onFirstUserInteraction, { passive: true, once: true });
+                document.addEventListener(evt, onFirstUserInteraction, { passive: true, once: true });
+            });
 
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', initVideos);
