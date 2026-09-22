@@ -91,25 +91,13 @@
     .header {
       background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
       color: white;
-      padding: 22px 30px 20px 30px;
+      padding: 20px 28px 18px 28px;
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 20px;
       position: relative;
       flex-shrink: 0;
       border-bottom: 3px solid var(--accent-bright);
-    }
-
-    .header::after {
-      content: "";
-      position: absolute;
-      right: -20px;
-      bottom: -30px;
-      width: 170px;
-      height: 170px;
-      background: radial-gradient(circle, rgba(16,185,129,0.22) 0%, rgba(255,255,255,0) 70%);
-      border-radius: 50%;
-      pointer-events: none;
     }
 
     .avatar-wrapper {
@@ -118,39 +106,40 @@
     }
 
     .avatar {
-      width: 96px;
-      height: 96px;
+      width: 94px;
+      height: 94px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3.5px solid rgba(255, 255, 255, 0.95);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+      border: 3px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 5px 14px rgba(0,0,0,0.35);
       display: block;
     }
 
     .header-info {
       flex: 1;
+      min-width: 0;
     }
 
     .name-row {
       display: flex;
       align-items: baseline;
-      gap: 12px;
+      gap: 10px;
     }
 
     .name {
       font-family: 'Outfit', sans-serif;
-      font-size: 23pt;
+      font-size: 22pt;
       font-weight: 700;
       letter-spacing: -0.6px;
       line-height: 1.1;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       color: #ffffff;
     }
 
     .motto {
       font-style: italic;
       color: #a7f3d0;
-      font-size: 8.5pt;
+      font-size: 8.2pt;
       font-family: 'Outfit', sans-serif;
       letter-spacing: 0.3px;
     }
@@ -159,17 +148,17 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 10.5pt;
+      font-size: 10pt;
       font-weight: 600;
       color: #6ee7b7;
       letter-spacing: 0.3px;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
       text-transform: uppercase;
     }
 
     .role-sub {
       color: #e2e8f0;
-      font-size: 8.8pt;
+      font-size: 8.5pt;
       font-weight: 400;
       margin-left: 4px;
       text-transform: none;
@@ -178,32 +167,94 @@
     .header-contacts {
       display: flex;
       flex-wrap: wrap;
-      gap: 9px 16px;
-      font-size: 8.2pt;
+      gap: 8px 14px;
+      font-size: 8pt;
       color: #f1f5f9;
     }
 
     .contact-item {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       text-decoration: none;
       color: #f8fafc;
       font-weight: 400;
+      white-space: nowrap;
     }
 
     .contact-item svg {
-      width: 13px;
-      height: 13px;
+      width: 12.5px;
+      height: 12.5px;
       fill: #34d399;
       flex-shrink: 0;
+    }
+
+    /* QR KOD KUTUSU (SAĞ ÜST KÖŞE) */
+    .header-qr {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      padding: 5px 8px 5px 8px;
+      flex-shrink: 0;
+      text-align: center;
+      margin-left: auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      position: relative;
+      z-index: 2;
+    }
+
+    .qr-meta-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 6.6pt;
+      font-weight: 600;
+      color: #a7f3d0;
+      letter-spacing: 0.2px;
+      margin-bottom: 3.5px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .qr-dot {
+      opacity: 0.6;
+    }
+
+    .qr-link {
+      display: block;
+      line-height: 0;
+      background: #ffffff;
+      padding: 3px;
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .qr-img {
+      width: 54px;
+      height: 54px;
+      display: block;
+    }
+
+    .qr-caption {
+      font-size: 5.9pt;
+      color: #e2e8f0;
+      margin-top: 3.5px;
+      line-height: 1.15;
+      max-width: 78px;
+      font-weight: 500;
+      letter-spacing: -0.1px;
     }
 
     /* Sayfa 2 Küçük Header */
     .header-compact {
       background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
       color: white;
-      padding: 12px 30px;
+      padding: 12px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -752,6 +803,20 @@
           </a>
         </div>
       </div>
+
+      <!-- SAĞ ÜST QR KODU -->
+      <div class="header-qr">
+        <div class="qr-meta-top">
+          <span>22.09.2026</span>
+          <span class="qr-dot">•</span>
+          <span>v2.1</span>
+        </div>
+        <a href="https://www.metehanio.github.io" target="_blank" class="qr-link" title="https://www.metehanio.github.io">
+          <img src="data:image/png;base64,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" alt="QR Kod - metehanio.github.io" class="qr-img">
+        </a>
+        <div class="qr-caption">Güncel versiyon için kodu tarayınız.</div>
+      </div>
+
     </header>
 
     <!-- BODY COLUMNS -->
@@ -1073,7 +1138,7 @@
             <span class="event-title">İleri Seviye Mobil Uygulama (Kotlin)</span>
             <span class="event-sub">
               <span>İstanbul Üniversitesi Öğrenci Atölyesi</span>
-              <span style="font-weight: 600; color: var(--accent);">2024</span>
+              <span class="event-date-badge">2024</span>
             </span>
           </div>
 
@@ -1081,15 +1146,7 @@
             <span class="event-title">Uygulamalı Siber Güvenlik Atölyesi</span>
             <span class="event-sub">
               <span>Teknopark İstanbul</span>
-              <span style="font-weight: 600; color: var(--accent);">2024</span>
-            </span>
-          </div>
-
-          <div class="event-item">
-            <span class="event-title">Müzik Prodüksiyon Eğitimi</span>
-            <span class="event-sub">
-              <span>Ses &amp; Akustik Eğitimi</span>
-              <span style="font-weight: 600; color: var(--accent);">Sertifikalı</span>
+              <span class="event-date-badge">2024</span>
             </span>
           </div>
 
@@ -1097,23 +1154,31 @@
             <span class="event-title">Take Off Uluslararası Girişim Zirvesi</span>
             <span class="event-sub">
               <span>Teknofest / İTÜ</span>
-              <span style="font-weight: 600; color: var(--accent);">2022</span>
+              <span class="event-date-badge">2022</span>
             </span>
           </div>
 
           <div class="event-item">
-            <span class="event-title">İstanbul Airshow Havacılık Fuarı</span>
+            <span class="event-title">İstanbul Airshow</span>
             <span class="event-sub">
-              <span>Havacılık Fuarı</span>
-              <span style="font-weight: 600; color: var(--accent);">2022</span>
+              <span>Uluslararası Havacılık Fuarı</span>
+              <span class="event-date-badge">2022</span>
             </span>
           </div>
 
           <div class="event-item">
-            <span class="event-title">Genç Kartallar &amp; Havacılık Günleri</span>
+            <span class="event-title">Havacılık Günleri</span>
             <span class="event-sub">
-              <span>MSÜ Hava Harp Okulu &amp; Beykent Üni</span>
-              <span style="font-weight: 600; color: var(--accent);">2019-20</span>
+              <span>Beykent Üniversitesi</span>
+              <span class="event-date-badge">2020</span>
+            </span>
+          </div>
+
+          <div class="event-item">
+            <span class="event-title">Genç Kartallar Haftası</span>
+            <span class="event-sub">
+              <span>M.S.Ü. Hava Harp Okulu</span>
+              <span class="event-date-badge">2019</span>
             </span>
           </div>
 
